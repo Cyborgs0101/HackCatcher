@@ -1,1 +1,312 @@
+ /* Code For CSS(Website) (Contributed By : Pruthvik Sheth)  */
 
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+h1{
+    font-size: 3rem;
+}
+h2{
+    font-size: 2.2rem;
+}
+h3{
+    font-size: 1.5rem;
+}
+h4{
+    font-size: 1.2rem;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4rem;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+}
+
+.nav{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background: rgb(238, 238, 238);
+    padding-inline: 10rem;
+}
+
+.nav-right{
+    width: 30%;
+}
+
+.nav-left{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.nav-right ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+}
+
+.main-box{
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(images/bg.svg);
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    color: white;
+
+}
+
+
+#Tickets{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    width: 100%;
+    height: 100%;
+    background: rgb(32, 32, 32);
+}
+
+#Tickets h2{
+    margin-top: 4rem;
+}
+
+.tickets-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 4rem;
+    padding-inline: 10rem;
+}
+
+.ticket{
+    perspective: 1000px;
+    margin-bottom: 5rem;
+}
+
+.inner{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 24rem;
+    width: 20rem;
+    border-radius: .2rem;
+    outline: solid rgb(32, 32, 32) 3px;
+    outline-offset: -.6rem;
+    outline-style: dashed;
+    background: #316ab4;
+    transition: all .5s ease-in-out;
+    transform-style: preserve-3d;
+}
+
+.circle{
+    position: absolute;
+    top: 80px;
+    right: 0px;
+    height: 60px;
+    width: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    background-color: rgb(32, 32, 32);
+}
+.mirror{
+    left: 0px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.border{
+    position: absolute;
+    height: 23rem;
+    width: 19rem;
+    background-color: transparent;
+    border: solid 3px rgb(32, 32, 32);
+    border-radius: .2rem;
+    border-style: dashed;
+}
+.ticket h2{
+    margin-top: 3rem;
+    color: white;
+}
+.ticket h3{
+    margin-top: .5rem;
+    color: white;
+}
+
+.content{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+    text-align: center;
+}
+
+
+.front{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    backface-visibility: hidden;
+}
+
+.back{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+}
+
+.ticket:hover .inner{
+    transform: rotateY(180deg);
+    /* backface-visibility: hidden; */
+}
+
+.goButton{
+    margin-top: 4rem;
+    width: 100%;
+}
+
+.goButton a{
+    color: black;
+    background: white;
+    padding: 1rem 5rem;
+    border-radius: .2rem;
+    font-weight: bold;
+}
+
+.content h3{
+    margin-top: 3rem;
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 25%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-top-right-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+  width: 100%;
+  padding: .5rem;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+}
+
+.dropdown-content a{
+    width: 100%;
+    padding: .2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .2rem;
+    transition: all .3s ease;
+}
+
+.dropdown-content a:hover{
+    background: rgb(49, 106, 180);
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  transition: all 1s ease;
+}
+
+.filter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-inline: 10rem;
+    margin-top: 2rem;
+    z-index: 1000;
+    font-family: 'Poppins' sans-serif;
+}
+
+.filter input{
+    padding: 1rem;
+    width: 75%;
+    background: rgb(32, 32, 32);
+    font-size: 1rem;
+    border: white solid 1px;
+    color: white;
+    outline: none;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+}
+
+.filter button{
+    width: 100%;
+    font-family: 'Poppins' sans-serif;
+    padding: 1.08rem;
+    background: white;
+    border: solid 1px white;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+
+}
+
+#upButton{
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    height: 60px;
+    outline: none;
+    cursor: pointer;
+    background: transparent;
+    width: 60px;
+    border-radius: 50%;
+}
