@@ -66,39 +66,58 @@ def hackerEarth():
             else:
                 continue
                 
-        
-        URL = requests.get('https://www.hackerearth.com/challenges/').text
+    #Code For HackerEarth scrapping( Contributed By : Dev Pandya)    
+    URL = requests.get('https://www.hackerearth.com/challenges/').text
 
-        soup = BeautifulSoup(URL, 'html.parser')
+    soup = BeautifulSoup(URL, 'html.parser')
 
-        Upcoming_events = soup.find('div', class_='upcoming')
-        Event_names = []  # newly added
+    Upcoming_events = soup.find('div', class_='upcoming')
+    Event_names = []  # newly added
 
-        for card in Upcoming_events.find_all('div', class_='challenge-card-modern'):
-            event_temp = card.find('div', class_='challenge-name').text
-            event = event_temp.split('\n')
+    for card in Upcoming_events.find_all('div', class_='challenge-card-modern'):
+        event_temp = card.find('div', class_='challenge-name').text
+        event = event_temp.split('\n')
 
-            date_temp1 = card.find('div', class_='date').text
-            date_temp2 = date_temp1.split(' ')
-            date_temp3 = date_temp2[1].split(',')
+        date_temp1 = card.find('div', class_='date').text
+        date_temp2 = date_temp1.split(' ')
+        date_temp3 = date_temp2[1].split(',')
 
-            month = month_generator(date_temp2[0])
-            date_passed = f"2021-{month}-{date_temp3[0]}"
-            time = f"{date_temp2[2]} {date_temp2[3]}"
-            image = card.find('div', class_='event-image').get('style').split('url(\'')
-            Link_front = "https://www.hackerearth.com"
-            Link_tail = card.a.get('href')
-            Link = Link_front + Link_tail
-            img = image[1].split('\');')
-            if event[1] == "Java Developer Hiring Challenge - May21":
-                continue
-            else:
-                temp = [event[1], date_passed, Link, img[0], "No Data","HackerEarth"]
-                Events.append(temp)
-                Event_names.append(event[1])
-        return render_template('index.html', events=Events, length=len(Events))
+        month = month_generator(date_temp2[0])
+        date_passed = f"2021-{month}-{date_temp3[0]}"
+        time = f"{date_temp2[2]} {date_temp2[3]}"
+        image = card.find('div', class_='event-image').get('style').split('url(\'')
+        Link_front = "https://www.hackerearth.com"
+        Link_tail = card.a.get('href')
+        Link = Link_front + Link_tail
+        img = image[1].split('\');')
+        if event[1] == "Java Developer Hiring Challenge - May21":
+            continue
+        else:
+            temp = [event[1], date_passed, Link, img[0], "No Data","HackerEarth"]
+            Events.append(temp)
+            Event_names.append(event[1])
+   
+
+    req = requests.get('https://codeforces.com/api/contest.list')
+    received = req.text
+    data = json.loads(received)
+    data_result = data['result']
+
+    for x in data_result:
+        if (x['relativeTimeSeconds'] < 0):
+            name = x['name']  # Name Var
+            start_date = datetime.datetime.today() + datetime.timedelta(seconds=-1 * x['relativeTimeSeconds'])
+            s_date = f"{start_date.year}-{start_date.month}-{start_date.day}"  # Start Date Var
+            end_date = datetime.datetime.today() + datetime.timedelta(
+                seconds=x['durationSeconds'] + (-1 * x['relativeTimeSeconds']))
+            e_date = f"{end_date.year}-{end_date.month}-{end_date.day}"  # End Date Var
+            website = "https://codeforces.com/contests/page/1"  # Website URL Var
+            temp_event_1 = [name, s_date, website, "static\images\\3-01.jpg", e_date, "CodeForces"]
+            Events.append(temp_event_1)
     
-    app.run(debug = True)
+    return render_template('index.html', events=Events, length=len(Events))
+    
+ app.run(debug = True)
     
     
     
