@@ -24,10 +24,9 @@ def clean_up(i):
 def Insta_Post(n):
     # enter name of your image bellow
     bot = Bot()
-    bot.login(username="cyborgs123", password="Cyborgs123@")
+    bot.login(username="Enter Your Username", password="Enter Your Password")
     for i in range(n):
-        image_name = "HackerEarth_" + str(i) + ".jpg"
+        image_name = "Path\imageName"
         clean_up(image_name)
         bot.upload_photo(image_name,
-                         caption="HackerEarth is organising the hackathon \
-                                Checkout the bio to register #coding")
+                         caption="Any Caption that you want")
