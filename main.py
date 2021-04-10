@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import datetime
+from image_generator import Pil
+from insta_post_uploader import Insta_Post
 
 app = Flask(__name__)
 
@@ -118,6 +120,18 @@ def hackerEarth():
     return render_template('index.html', events=Events, length=len(Events))
     
  app.run(debug = True)
+
+
+# This part will create insta post
+count = 0
+for Event in Events:
+    if count==20:
+        break
+    else:
+        Pil(Event[0], Event[1], count)#This will create Images that you want your text on
+        count += 1
+
+Insta_Post(5)#This will post 5 post on insta
     
     
     
