@@ -151,6 +151,23 @@ def hackerEarth():
             temp_event_1 = [name, s_date, website, "static\images\\3-01.jpg", e_date, "CodeForces"]
             Events.append(temp_event_1)
     
+    # Code For HackClub Scrapping (Contributed By : Pruthvik Sheth)
+
+    url_hackclub = 'https://hackathons.hackclub.com/api/events/upcoming'
+
+    response1 = requests.get(url_hackclub)
+    if response1.status_code != 200:
+        print("Sorry an error occured. Please try Again :)")
+    else:
+        strResponse = response1.text
+        data = json.loads(strResponse)
+
+        for x in data:
+            s_date = x['start'].split('T')
+            e_date = x['end'].split('T')
+            temp_event = [x['name'], s_date[0], x['website'], x['logo'], e_date[0],"HackClub"]
+            Events.append(temp_event)
+    
     return render_template('index.html', events=Events, length=len(Events))
     
  app.run(debug = True)
