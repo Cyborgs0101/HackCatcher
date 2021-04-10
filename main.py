@@ -8,6 +8,40 @@ from insta_post_uploader import Insta_Post
 
 app = Flask(__name__)
 
+def date_converter(date):
+    date = date.lstrip()
+    month = {'Jan': '01',
+             'Feb': '02',
+             'Mar': '03',
+             'Apr': '04',
+             'May': '05',
+             'Jun': '06',
+             'Jul': '07',
+             'Aug': '08',
+             'Sep': '09',
+             'Oct': '10',
+             'Nov': '11',
+             'Dec': '12'
+             }
+    try :
+        str_month, s_date, garbage, e_date = date.split(' ')
+        num_month = month[str_month]
+        s_date = s_date.strip("th")
+        s_date = s_date.strip("st")
+        s_date = s_date.strip("nd")
+        s_date = s_date.strip("rd")
+        e_date = e_date.strip("th")
+        e_date = e_date.strip("st")
+        e_date = e_date.strip("nd")
+        e_date = e_date.strip("rd")
+
+        std_s_date = f"2021-{num_month}-{s_date}"
+        std_e_date = f"2021-{num_month}-{e_date}"
+
+        return [std_s_date, std_e_date]
+    except :
+        return [" ", " "]
+
 def today_date() :
     t_date = datetime.datetime.today()
     month = t_date.month
