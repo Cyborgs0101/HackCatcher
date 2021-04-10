@@ -1,1 +1,153 @@
+<!-- Code For HTML(Website) (Contributed By : Pruthvik Sheth) -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static\style10.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathons</title>
+</head>
+<body>
+
+    <header>
+        <div class="nav">
+            <div class="nav-left">
+                <img src="static\images\Logo.png" alt="" width="15%">
+                <h2>Cyborgs</h2>
+            </div>
+            <div class="nav-right">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Subscribe Us</a></li>
+                    <li><a href="#">Get started</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section id="landing">
+        <div class="main-box">
+            <h1>All Hackathons at a single place</h1>
+        </div>
+    </section>
+
+    <section id="Tickets">
+        <h2>Currently Running</h2>
+        <div class="filter">
+            <input onkeyup="search_func()" type="text" id="text-box" placeholder="Search Events or Hackathons">
+            <div class="dropdown">
+                <button class="dropbtn">Sort By</button>
+                <div class="dropdown-content">
+                  <a onclick="sort_start('L')" href="#">Latest</a>
+                  <a onclick="sort_start('O')" href="#">Oldest</a>
+                </div>
+            </div>
+        </div>
+        <div class="tickets-box">
+            {%for i in range(0, length)%}
+            <div class="ticket">
+                <div class="inner">
+                    <div class="circle"></div>
+                    <div class="circle mirror"></div>
+
+                    <div class="front">
+                        <div class="content">
+                            <img class="fimg" src="{{events[i][3]}}" alt="" height="30%">
+                            <h3 class="fh3">{{events[i][0]}}</h3>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="content">
+                            <h4 class="sdate">Start Date: {{events[i][1]}}</h4>
+                            <h4 class="edate">End Date: {{events[i][4]}}</h4>
+                            <h4 class="host">Source: {{events[i][5]}}</h4>
+                            <div class="goButton">
+                                <a class="buttonlink" href="{{events[i][2]}}">Visit Site</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </section>
+
+    <a id="upButton" href="#landing"><img src="static\images\up-arrow.svg" alt=""></a>
+
+
+    <script>
+    card = document.getElementsByClassName("ticket");
+    event_name = document.getElementsByClassName("fh3");
+    start_date = document.getElementsByClassName("sdate");
+    end_date = document.getElementsByClassName("edate");
+    image = document.getElementsByClassName("fimg");
+    button = document.getElementsByClassName("buttonlink");
+    event_host = document.getElementsByClassName("host");
+
+    data = [];
+
+        for(i=0;i<card.length;i++)
+        {
+            data.push({Name: event_name[i].innerHTML,
+                    Start_Date: new Date(start_date[i].innerHTML.split("Start Date: ")[1]),
+                    End_Date: new Date(end_date[i].innerHTML.split("End Date: ")[1]),
+                    Image: image[i].src,
+                    Website: button[i].href,
+                    Source: event_host[i].innerHTML
+            });
+        }
+
+    function sort_start(parameter)
+    {
+        event_name_copy = event_name;
+        start_date_copy = start_date;
+        end_date_copy = end_date;
+        image_copy = image;
+        button_copy = button;
+        event_host_copy = event_host;
+
+        Sorted_Data = data.slice().sort((a,b)=> b.Start_Date - a.Start_Date);
+
+        if( parameter == 'L')
+        {
+            Sorted_Data.reverse();
+        }
+
+        for(i=0;i<Sorted_Data.length;i++)
+        {
+            event_name_copy[i].innerHTML = Sorted_Data[i].Name;
+            image_copy[i].src = Sorted_Data[i].Image;
+            start_date_copy[i].innerHTML = "Start Date: " + Sorted_Data[i].Start_Date.getDate() + "-" + Sorted_Data[i].Start_Date.getMonth() + "-" + Sorted_Data[i].Start_Date.getFullYear();
+            end_date_copy[i].innerHTML = "End Date: " + Sorted_Data[i].End_Date.getDate() + "-" + Sorted_Data[i].End_Date.getMonth() + "-" + Sorted_Data[i].End_Date.getFullYear();
+            button_copy[i].href = Sorted_Data[i].Website;
+            event_host_copy[i].innerHTML = Sorted_Data[i].Source;
+        }
+    }
+
+    function search_func()
+    {
+        card_copy = card;
+
+        search_elem = document.getElementById("text-box");
+
+        for(i=0;i<card.length;i++)
+        {
+            if((data[i].Name.toUpperCase().indexOf(search_elem.value.toUpperCase()) > -1) || data[i].Source.toUpperCase().indexOf(search_elem.value.toUpperCase())> -1 )
+            {
+                card[i].style.display = "";
+            }
+            else
+            {
+                card[i].style.display = "none";
+            }
+        }
+    }
+</script>
+    <script src="../static/app1.js"></script>
+
+</body>
+</html>
