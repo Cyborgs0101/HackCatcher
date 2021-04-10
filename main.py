@@ -13,6 +13,22 @@ def today_date() :
     day = t_date.day
     date = f"{year}-{month}-{day}"
     return date
+
+def month_generator(date):
+    month = {'Jan': '01',
+                 'Feb': '02',
+                 'Mar': '03',
+                 'Apr': '04',
+                 'May': '05',
+                 'Jun': '06',
+                 'Jul': '07',
+                 'Aug': '08',
+                 'Sep': '09',
+                 'Oct': '10',
+                 'Nov': '11',
+                 'Dec': '12'
+                 }
+    return month[date]
   
 @app.route('/')
 def hackerEarth():
@@ -50,6 +66,39 @@ def hackerEarth():
             else:
                 continue
                 
-       return render_template('index.html', events=Events, length=len(Events))
+        
+        URL = requests.get('https://www.hackerearth.com/challenges/').text
+
+        soup = BeautifulSoup(URL, 'html.parser')
+
+        Upcoming_events = soup.find('div', class_='upcoming')
+        Event_names = []  # newly added
+
+        for card in Upcoming_events.find_all('div', class_='challenge-card-modern'):
+            event_temp = card.find('div', class_='challenge-name').text
+            event = event_temp.split('\n')
+
+            date_temp1 = card.find('div', class_='date').text
+            date_temp2 = date_temp1.split(' ')
+            date_temp3 = date_temp2[1].split(',')
+
+            month = month_generator(date_temp2[0])
+            date_passed = f"2021-{month}-{date_temp3[0]}"
+            time = f"{date_temp2[2]} {date_temp2[3]}"
+            image = card.find('div', class_='event-image').get('style').split('url(\'')
+            Link_front = "https://www.hackerearth.com"
+            Link_tail = card.a.get('href')
+            Link = Link_front + Link_tail
+            img = image[1].split('\');')
+            if event[1] == "Java Developer Hiring Challenge - May21":
+                continue
+            else:
+                temp = [event[1], date_passed, Link, img[0], "No Data","HackerEarth"]
+                Events.append(temp)
+                Event_names.append(event[1])
+        return render_template('index.html', events=Events, length=len(Events))
     
     app.run(debug = True)
+    
+    
+    
