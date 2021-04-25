@@ -11,6 +11,8 @@ Dev Pandya(Web Scrapping with Beautiful Soup, Insta bot developer, Automatic Ima
 
 Smit Prajapati(Web Scrapping with Beautiful Soup)
 
+Dhruv Prajapati (Web Scrapping, JS)
+
 
 # Description 
 
