@@ -3,11 +3,11 @@ It will showcase all the hackathons at one place, Instagram post generator for t
 
 
 # Contributors
-[Dhairya Patel](https://github.com/DhairyaPatel0911) (Teamleader@Cyborgs, Back End Development with Flask, Web Scrapping with Beautiful Soup, Python Development)
+[Dhairya Patel](https://github.com/DhairyaPatel2210) (Teamleader@Cyborgs, Back End Development with Flask, Web Scrapping with Beautiful Soup, Python Development)
 
-[Pruthvik Sheth](https://github.com/pns0911) (Front End Development with HTML,CSS and JS, UI designer, Web Scrapping with Beautiful Soup)
+[Pruthvik Sheth](https://github.com/pns00911) (Front End Development with HTML,CSS and JS, UI designer, Web Scrapping with Beautiful Soup)
 
-[Dev Pandya](https://github.com/DP0811) (Web Scrapping with Beautiful Soup, Insta bot developer, Automatic Image Gerator)
+[Dev Pandya](https://github.com/DP8801) (Web Scrapping with Beautiful Soup, Insta bot developer, Automatic Image Gerator)
 
 [Smit Prajapati](https://github.com/smit977) (Web Scrapping with Beautiful Soup)
 
